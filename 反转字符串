@@ -1,0 +1,20 @@
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char str[99],temp;
+	int i=0;
+	int j,n;
+	while((str[i]=getchar())!='\n')
+		i++; 
+	str[i]!='\0';
+	n=strlen(str);
+	for(i=0,j=n-1;i<j;i++,j--)
+	{
+		temp=str[j];
+		str[j]=str[i];
+		str[i]=temp; 
+	}
+	printf("%s\n",str);
+	return 0;
+}
