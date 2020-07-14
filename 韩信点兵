@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main()
+{
+	int a,b,c,sum;
+	printf("Enter 3 numbers (a<3,b<5,c<7):");
+	scanf("%d,%d,%d",&a,&b,&c);
+	for(sum=10;sum<=100;sum++)
+		if(sum%3==a && sum%5==b && sum%7==c)
+			{
+				printf("%d\n",sum);
+				break;
+			}
+	if(sum>100)
+		printf("no answer!\n");
+	return 0;	
+}
