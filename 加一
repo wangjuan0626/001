@@ -1,0 +1,51 @@
+//*对于任意数组，采用动态分配内存便于处理，考虑到数组最后一个数字可能是9，因而分情况考虑*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,n,num,flag;
+	int *array;//*定义指针*// 
+	printf("请输入所要创建的一维动态数组的数组长度:");
+	scanf("%d",&n);//*保存下所输入n值*// 
+	array=(int*)malloc(sizeof(int));//*动态分配内存*// 
+	for(i=0;i<n;i++)
+		scanf("%d",array+i);//*输入数组元素并保存*// 
+	for(i=0;i<n;i++)
+	{
+		if(array[n-1]==9)//*最后一个元素为9*// 
+			flag=1; 
+		else
+			flag=0;
+	}
+	if(flag==1)//*当最后一个元素为9时*// 
+	{
+		for(i=0;i<n;i++)
+			if(array[n-1-i]+1==10)//*每一个元素均为9*// 
+			{
+				n=n+1;//*储存元素数量加一*// 
+				*array=1;//*第一个元素为1*// 
+				for(i=1;i<n;i++)
+					*(array+i)=0;//*其余每个元素赋值，均为0*// 
+			}
+			else //当最后一个元素为9且有元素不为9*// 
+			{
+				while(n>0)
+				{
+					if(array[n-1]==9)//*当元素为9时，令该数组元素为0，n递减，方便计算前一位是否为9*// 
+					{
+						array[n-1]=0;
+						n--;
+					}
+					else//*当该元素不为9时，该数加一*// 
+						array[n-1]+=1;
+				}
+		 	}
+	}
+	else//*当最后一个元素不为9时*// 
+		*(array+n-1)=*(array+n-1)+1;//*最后一个元素加一*// 
+	for(i=0;i<n;i++)
+		printf("%d",*(array+i));//*利用循环输出数组元素*// 
+	printf("\n");
+	free(array);//*释放内存*// 
+	return 0;		
+}
