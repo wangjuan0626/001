@@ -1,0 +1,32 @@
+//*去除重复值*//
+//*如果采用每一个与整个数组元素比较，花费的时间资源较多，可以先采用排序的方法将数组元素顺序改变，然后只需比较前一个与后一个数组元素是否相等即可*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,j,n,index;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));//*动态分配内存*//
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	for(i=0;i<n;i++)//*采用冒泡排序进行排列*// 
+		for(j=i+1;j<n;j++)
+		if(a[j]<a[i])
+		{
+			int temp=0;//*定义中间值，便于交换*// 
+			temp=a[i];a[i]=a[j];a[j]=temp;
+		}
+	index=0;//*赋初值*// 
+	for(i=0;i<n;i++)
+		if(a[i]!=a[i-1])//*如果前后元素不相等，则将其存入新的数组，改变下标*// 
+		{
+			a[index]=a[i];
+			index++;
+		}
+	for(i=0;i<index;i++)
+		printf("%d",a[i]);
+	printf("\n");
+	return 0;
+} 
