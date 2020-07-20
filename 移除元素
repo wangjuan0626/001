@@ -1,0 +1,26 @@
+//*移除数组元素*//
+//*采用遍历单位方式将目标元素与所有数组元素相比较，相等则不纳入新的数组中*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,n,val;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));//*动态分配内存*//
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	printf("请输入所移除的元素值:");
+	scanf("%d",&val);
+	int index=0;//*定义数组新下标并赋初值*// 
+	for(i=0;i<n;i++)
+		if(a[i]!=val)
+		{
+			a[index]=a[i];
+			index++;
+		}//*当数组元素与目标元素不相等时，则将其储存在新的数组中*// 
+	printf("新的数组长度是%d\n",index);	
+	free(a);
+	return 0;
+} 
