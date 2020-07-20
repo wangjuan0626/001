@@ -1,0 +1,48 @@
+//*寻找未出现的第一个最小的正整数，可以采用遍历的方式逐一检查*//
+#include <stdio.h>
+#include <stdlib.h>
+//*为方便寻找最小的正整数因当缩小范围，减少运算复杂度和时间，故而可以先删除负数和0。*//
+//*在一个一维数组中，其包含n个元素,若其是从小到大顺序排列，则其最小正整数应该是n+1，故而最小正整数的范围应该在1到n+1之间*// 
+int main()
+{
+	int i,n;
+	int flag=0;
+	int *num;
+	printf("请输入数组长度:");
+	scanf("%d",&n);
+	num=(int *)malloc(n*sizeof(int));//*动态分配内存*// 
+	for(i=0;i<n;i++)
+		scanf("%d",&num[i]);//*输入并保存*// 
+	for(i=0;i<n;i++)
+		if(num[i]!=1)
+			flag++;//*判断数组中是否有1的存在，如果没有，那最小值便是1，否则将进行其他运算*// 
+	if(flag=0)
+		printf("1\n");
+	//*无1的情况下，将负数和0以及大于n的情况*// 
+	flag=0;
+	for(i=0;i<n;i++)
+		if(num[i]<0 || num[i]>n)//*将这些情况下的数全转化为1*// 
+		{
+			num[i]=1;
+			flag++;
+		}
+	if(flag==0)
+		printf("%d\n",n+1);//*如果flag=0，则表明所有数据均在1到n之间，那么最小的便是n+1*// 
+	//*处理重复值*// 
+	for(i=0;i<n;i++)
+	{
+		if(num[i]<0)
+			flag=0-num[i]-1;
+		else
+			flag=num[i]-1;
+		if(num[flag]>0)
+			num[flag]=0-num[flag];
+	}//*判断是否出现过可以采用判断数组值是否为正数，为正数则出现过*// 
+	for(i=0;i<n;i++)
+		if(num[i]>0)
+		{
+			printf("%d\n",i+1);
+			break;
+		}
+		return 0;
+} 
