@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int *a;
+	int i,n,zero,one,two;
+	zero=one=two=0;
+	printf("请输入一维数组的长度:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));//*动态分配内存*// 
+	printf("0--红色  1--白色  2--蓝色\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*确认每种颜色的个数*// 
+	for(i=0;i<n;i++)
+		if(a[i]==0)
+			zero++;
+		else if(a[i]==1)
+			one++;
+		else
+			two++;
+	//*输出情况分多种考虑*//
+	int x=zero;
+	int y=one;//*定义x,y，防止zero和one变成0使运算错误*// 
+	while(zero>0)
+	{
+		a[zero-1]=0;
+		zero--;
+	}//*当红色存在时进行此循环，随着zero的递减，数组元素逐渐转换成0，直至无红色存在*// 
+	while(one>0)
+	{
+		a[one+x-1]=1;//*采用x，否则zero变成0使得数组元素又发生改变*// 
+		one--;
+	}//* 当白色存在时进行循环，随着one的递减，数组元素对应位置转换成1，直至one=0暂停*// 
+	while(two>0)
+	{
+		a[two+x+y-1]=2;
+		two--;
+	}//*当蓝色存在时进行此循环*// 
+	for(i=0;i<n;i++)
+		printf("%2d",a[i]);
+	printf("\n");
+	free(a);
+	return 0;
+}
