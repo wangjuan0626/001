@@ -1,0 +1,37 @@
+//*合并两个有序数组*//
+//*先将两个数组整合到第一个数组中，然后给数组元素排序，即可得到整合结果*//
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int m,n;//*定义数组元素数量*//
+	int *a,*b;
+	int i,t;
+	printf("请输入一维数组长度n:\n");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));
+	printf("输入第一个数组元素：\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	printf("请输入一维数组长度m:\n");
+		scanf("%d",&m);
+	printf("输入第二个数组元素:\n");
+	for(i=0;i<m;i++)
+		scanf("%d",&b[i]);
+	int index=n;
+	for(i=0;i<n+m;i++)
+		a[index++]=b[i+n];//*将数组合并*// 
+	for(i=1;i<m+n;i++)
+		for(int j=0;j<m+n-i;j++)
+			if(a[j]>a[j+1])
+				{
+					t=a[j];
+					a[j]=a[j+1];
+					a[j+1]=t;
+				}//*利用冒泡排序*// 
+	for(i=0;i<n+m;i++)
+		printf("%2d",a[i]);
+	printf("\n");
+	free(a);
+	return 0;
+} 
