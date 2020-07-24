@@ -1,0 +1,29 @@
+//*找出字符串数组b在a中出现的第一个位置*//
+//*采用strstr（）函数*// 
+#include <stdio.h>
+#include <string.h>//*strstr()函数的头文件*// 
+int main()
+{
+	char *a,*b,*p;
+	int i=0;
+	printf("Enter a string:\n");
+	while((a[i]=getchar())!='\n')
+		i++;
+	a[i]='\0';
+	i=0;
+	printf("Enter a string:\n");
+	while((b[i]=getchar())!='\n')
+		i++;
+	b[i]='\0';
+	p=strstr(a,b);//*利用strstr函数，其中p值为b的值*// 
+	i=0;
+	if(p==NULL)//*如果p为空，则输出-1*// 
+		printf("-1\n");
+	else//*如果p不为空*// 
+		{
+		while(a[i]!=p[0])
+			i++;//*当a中字符与p的首字符重合时，i停止变化*// 
+		printf("%d\n",i);//输出对应i值*// 
+		}
+	return 0;
+}
