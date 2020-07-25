@@ -1,0 +1,22 @@
+//*寻找乘积最大的连续子数组*//
+//*对于连续子数组，只需计算前后两个数组值的乘积，可以采用循环的方法，然后比较乘积大小，将大的储存下来*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int *num;
+	int i,n,s;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	num=(int *)malloc(n*sizeof(int));//*动态分配内存*//
+	printf("请输入一维数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&num[i]); 
+	int temp=num[0]*num[1];//*定义临时存放点，储存目前最大乘积*//
+	for(i=0;i<n;i++)
+		if((num[i]*num[i+1])>temp) 
+			temp= num[i]*num[i+1];//*不断进行计算并且交换，使得所出结果是最大子数组*// 
+	printf("%d",temp);
+	free(num);
+	return 0;
+}
