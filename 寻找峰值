@@ -1,0 +1,21 @@
+//*寻找峰值元素，只需寻找一个即可*//
+//*峰值元素是指其值大于左右相邻元素值，只需要比较该数与左右元素大小即可，然后采用break的特性结束循环*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int *num;
+	int i,n;
+	printf("请输入一维数组的长度:");
+	scanf("%d",&n);
+	num=(int *)malloc(n*sizeof(int));//*动态分配内存*// 
+	printf("请输入数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&num[i]);
+	for(i=0;i<n;i++)
+		if(num[i]>num[i+1] && num[i]>num[i-1])
+			break;//*采用循环判断其是否为峰值*// 
+	printf("%d",i);
+	free(num);
+	return 0;
+}
