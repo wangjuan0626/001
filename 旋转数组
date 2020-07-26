@@ -1,0 +1,36 @@
+//*旋转数组*//
+//*采用数组复制，然后将旋转的结果逐个覆盖到原数组*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,n,k;
+	int *num;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	num=(int *)malloc(n*sizeof(int));
+	printf("请输入数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&num[i]);
+	printf("请输入元素向右移动k个位置:");
+	scanf("%d",&k);
+	//*定义临时数组*//
+	//*错误方式：1）直接定义指针，然后令两个指针相等；2）直接定义指针，然后采用循环将数组值逐个复制*// 
+	int temp[n];
+	//*复制数组元素*// 
+	for(i=0;i<n;i++)
+		temp[i]=num[i];
+	//*覆盖数组元素*// 
+	int index=0;
+	//*把后k个元素值覆盖到原数组的前k个位置上*// 
+	for(i=n-k;i<n;i++,index++)
+		num[index]=temp[i];
+	//*剩余部分按照顺序覆盖*// 
+	for(i=0;i<n-k;i++,index++)
+		num[index]=temp[i];
+	for(i=0;i<n;i++)
+		printf("%5d",num[i]);
+	printf("\n");
+	free(num);
+	return 0;
+}
