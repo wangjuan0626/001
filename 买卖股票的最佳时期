@@ -1,0 +1,30 @@
+//*买卖股票的最佳时期*//
+//*基本思路：买卖股票的时间有先后顺序，可以采用遍历的方式将买卖时的钱进行一一比较，如果买出价格大于卖出价格，交易无法完成*// 
+#include <stdio.h> 
+#include <stdlib.h>
+int main()
+{
+	int i,j,t,n;
+	int *a;
+	printf("请输入股票总支数:");
+	scanf("%d",&n);
+	//*动态分配内存*// 
+	a=(int *)malloc(n*sizeof(int)); 
+	//*输入股票价格*//
+	printf("请输入股票价格:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*设定初始利润为0*// 
+	int s=0;
+	//*买入时股票价格与卖出一一对比*// 
+	for(i=0;i<n-1;i++) 
+		for(j=1;j<n;j++)
+			{//*当利润比当前小时，令利润等于当前利润*// 
+				t=a[j]-a[i];
+				if(s<t)
+					s=t;
+			}
+	printf("最大利润为%d!\n",s);
+	free(a);
+	return 0;
+}
