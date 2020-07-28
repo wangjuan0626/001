@@ -1,0 +1,48 @@
+//*判断是否有重复元素*//
+//*基本思路：首先可以将数组元素排序，然后比较前后元素是否相等，若存在一组相等，即可以结束运算*//
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,n;
+	int *a;
+	printf("请输入该整数数组元素个数：");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));
+	printf("请输入数组数值：\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	int j=0;
+	int temp;
+	//*采用冒泡排序来将数组元素大小显示*// 
+	//*趟数*// 
+	for(i=1;i<n;i++)
+	//*实现一次冒泡操作*// 
+		for(j=0;j<n-i;j++)
+		//*交换*// 
+			if(a[j]>a[j+1])
+			{
+				temp=a[j];
+				a[j]=a[j+1];
+				a[j+1]=temp;
+			}
+	//*定义判断标准*// 
+	int flag;
+	//*采用循环来比较数组元素大小*//
+	for(i=0;i<n;i++)
+	{
+		if(a[i]==a[i+1])
+		{
+			flag=1;
+			break;
+		}
+		else
+			flag=0;
+	}
+	if(flag==1)
+		printf("ture\n");
+	else
+		printf("false\n");
+	free(a);
+	return 0;
+} 
