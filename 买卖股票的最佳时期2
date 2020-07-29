@@ -1,0 +1,24 @@
+//*思路:一旦第二天的股票价格大于第一天，立即将股票进行买卖操作*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,n;
+	int *a;
+	printf("请输入股票支数:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));
+	printf("请输入股票价格：\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*定义初始股票利润*// 
+	int s=0;
+	//*采用循环的方式买卖股票*// 
+	for(i=0;i<n;i++)
+		//*当第二天股票价格大于第一天时，将股票进行买卖，并计算利润*// 
+		if(a[i+1]>a[i])
+			s+=a[i+1]-a[i];
+	printf("所获得的最大利润是%d!\n",s);
+	free(a);
+	return 0;
+}
