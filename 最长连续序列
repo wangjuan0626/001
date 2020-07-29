@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,j,t,n;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));
+	printf("输入数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*采用冒泡排序使数组元素数列大小关系清晰*// 
+	for(i=1;i<n;i++)
+		for(j=0;j<n-i;j++)
+			if(a[j]>a[j+1])
+			{
+				t=a[j];
+				a[j]=a[j+1];
+				a[j+1]=t;
+			}
+	int index=0; 
+	//*删除重复元素*//
+	for(i=0;i<n;i++)
+		if(a[i]!=a[i+1])
+			a[index++]=a[i];
+	//*令初始连续序列数为0*//
+	j=0;
+	//*定义最长序列数为max=0*//
+	int max=0;
+	//*采用循环，如果前后两数相差1，则序列长度增加*// 
+	for(i=0;i<n-1;i++)
+	{
+		if(a[i]==(a[i+1]-1))
+		{
+			j++;
+			//*将序列长度与最大序列长度比较，如果大于最大序列长度，则令最大序列长度为j*// 
+			if(j>max)
+				max=j;
+		}
+		else
+			t=0;
+	}
+	printf("最长连续序列长度为%d",j);
+	free(a);
+	return 0; 
+}
