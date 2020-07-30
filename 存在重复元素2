@@ -1,0 +1,39 @@
+//*基本思路:判断在i到i+k的范围内是否存在num[i]==num[j]，如果存在即正确*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int *num;
+	int i,j,k,n;
+	printf("请输入数组长度:");
+	scanf("%d",&n);
+	printf("请输入差值k:");
+	scanf("%d",&k);
+	//*动态分配内存*//
+	num=(int *)malloc(n*sizeof(int));
+	printf("请输入数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&num[i]);
+	//定义判断标志*// 
+	int flag;
+	for(i=0;i<n;i++)
+		//在i到i+k的范围判断*// 
+		for(j=i+1;j<=k+i;j++)
+		{
+			//*如果存在相等则返回1并且结束循环*// 
+			if(num[i]==num[j])
+				{
+					flag=1;
+					break;
+				}
+			//*反之则令flag=0，循环不结束*// 
+			else
+				flag=0;		
+		}
+	if(flag==1)
+		printf("true\n");
+	else	
+		printf("false\n");
+	free(num);
+	return 0;
+} 
