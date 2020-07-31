@@ -1,0 +1,31 @@
+//*寻找第三大的数，先排序后直接索引到该下标*//
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,j,t,n;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	//*动态分配内存*//
+	a=(int *)malloc(n*sizeof(int));
+	printf("输入数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*冒泡排序*//
+	for(i=1;i<n;i++)
+		for(j=0;j<n-i;j++)
+			if(a[j]<a[j+1])
+			{
+				t=a[j];
+				a[j]=a[j+1];
+				a[j+1]=t;
+			}
+	//*返回所寻找的数*// 
+	if(n>3)
+		printf("数组中第三大的数是%d\n",a[2]);
+	else
+		printf("数组中最大的数是%d\n",a[0]);
+	free(a);
+	return 0;
+} 
