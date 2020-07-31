@@ -1,0 +1,32 @@
+//*基本思路:每次攻击的时间2秒，如果在两秒内再次中毒，效果不累加*// 
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,n;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));
+	printf("请输入攻击时间：\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*定义初始中毒时间*// 
+	int time=0; 
+	//*采用循环计算中毒时间*//
+	for(i=0;i<n;i++)
+	{
+		//*如果中毒时间间隔大于两秒，处于中毒状态将持续两秒*// 
+		if((a[i+1]-a[i])>=2)
+		 	time+=2;
+		//*如果中毒时间间隔只有一秒，则处于中毒状态只有1秒*// 
+		else if((a[i+1]-a[i])==1)
+			time+=1;
+		//*其余攻击时间效果相当于无*// 
+		else
+			time+=0;
+	}
+	printf("中毒时间为%d",time);
+	free(a);
+	return 0;
+}
