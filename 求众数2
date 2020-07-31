@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,j,t,n;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));
+	printf("请输入数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*将数组元素排序*//
+	for(i=1;i<n;i++)
+		for(j=0;j<n-i;j++)
+			if(a[j]>a[j+1])
+			{
+				t=a[j];
+				a[j]=a[j+1];
+				a[j+1]=t;
+			} 
+	//*定义判断标志*//
+	int flag=1;
+	//*进行遍历处理*// 
+	for(i=0;i<n;i++)
+	{
+		//*当前后元素相等时，flag加一*// 
+		if(a[i]==a[i+1])
+			flag++;
+		else
+			{
+				//*当前后元素不相等时，如果flag大于n/3，则输出，并返回flag=1*// 
+				if(flag>n/3)
+					printf("%d\n",a[i]);
+				flag=1;
+			}
+	}
+	free(a);
+	return 0;
+} 
