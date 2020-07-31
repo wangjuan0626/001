@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,n;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	a=(int *)malloc(n*sizeof(int));
+	printf("请输入二进制数组元素:\n");
+	for(i=0;i<n;i++)
+		scanf("%d",&a[i]);
+	//*定义判断标志*//
+	int flag=0;
+	//*定义最大的1个数*//
+	int max=0; 
+	//*遍历统计1的个数*// 
+	for(i=0;i<n;i++)
+	{
+		//*如果元素等于1，则flag加一*// 
+		if(a[i])
+		{
+			flag++;
+			//*比较flag和最大计数的大小，如果flag大，则交换*// 
+			if(flag>max)
+				max=flag;
+		}
+		else
+			//*重新给flag赋值*// 
+			flag=0;
+	}
+	printf("最大连续1的个数为%d\n",max);
+	free(a);
+	return 0;
+}
