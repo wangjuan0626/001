@@ -1,0 +1,42 @@
+//移动0
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int i,j,t,n;
+	int *a;
+	printf("请输入一维数组长度:");
+	scanf("%d",&n);
+	//动态分配内存
+	a=(int *)malloc(n*sizeof(int));
+	printf("请输入数组元素：\n");
+	for(i=0;i<n;i++) 
+		scanf("%d",&a[i]);
+	//选择排序
+	for(i=1;i<n;i++)
+		for(j=0;j<n-i;j++)
+			if(a[j]>a[j+1])
+			{
+				t=a[j];
+				a[j]=a[j+1];
+				a[j+1]=t;
+			}
+	//定义计数元素
+	int count=0; 
+	for(i=0;i<n;i++)
+		if(a[i]==0)
+			count++;
+	//移动0
+	//非0部分
+	for(i=0;i<=count;i++)
+		a[i]=a[count+i];
+	//为0的部分
+	for(i=n-1;i>count;i--)
+		a[i]=0;
+	//输出数组元素
+	for(i=0;i<n;i++)
+		printf("%3d",a[i]);
+	printf("\n");
+	free(a);
+	return 0; 
+}
