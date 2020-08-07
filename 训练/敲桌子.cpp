@@ -9,8 +9,10 @@ int main()
 		a=i%10;//求个位数
 		b=i/10%10;//求十位数
 		if(a==7 || b==7)
-			cout << i << endl;
+			cout << "敲桌子" << endl;
 		else if(i%7==0)
+			cout << "敲桌子" << endl;
+		else
 			cout << i << endl;
 	}
 	system("pause");
